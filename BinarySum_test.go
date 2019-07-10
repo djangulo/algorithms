@@ -33,22 +33,20 @@ func TestBinarySum(t *testing.T) {
 }
 
 func BenchmarkBinarySum(b *testing.B) {
-	b.Run("100 digit sum benchmark", func(b *testing.B) {
-		A, B := MakeRandIntArray(100, 2), MakeRandIntArray(100, 2)
-		for i := 0; i < b.N; i++ {
-			BinarySum(A, B)
-		}
-	})
-	b.Run("1000 digit sum benchmark", func(b *testing.B) {
-		A, B := MakeRandIntArray(1000, 2), MakeRandIntArray(1000, 2)
-		for i := 0; i < b.N; i++ {
-			BinarySum(A, B)
-		}
-	})
-	b.Run("100,000 digit sum benchmark", func(b *testing.B) {
-		A, B := MakeRandIntArray(100000, 2), MakeRandIntArray(100000, 2)
-		for i := 0; i < b.N; i++ {
-			BinarySum(A, B)
-		}
-	})
+	benches := []struct {
+		name string
+		n    int
+	}{
+		{"100 digit sum", 100},
+		{"1,000 digit sum", 1000},
+		{"100,000 digit sum", 100000},
+	}
+	for _, bench := range benches {
+		A, B := MakeRandIntArray(bench.n, 2), MakeRandIntArray(bench.n, 2)
+		b.Run(bench.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				BinarySum(A, B)
+			}
+		})
+	}
 }

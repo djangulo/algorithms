@@ -56,8 +56,8 @@ func BenchmarkInsertionSort(b *testing.B) {
 		{"n=100,000 array", 100000},
 	}
 	for _, bench := range benches {
+		in := MakeRandIntArray(bench.n, MaxInt32)
 		b.Run(bench.name, func(b *testing.B) {
-			in := MakeRandIntArray(bench.n, MaxInt32)
 			for i := 0; i < b.N; i++ {
 				InsertionSort(in)
 			}
