@@ -25,12 +25,13 @@ func main() {
 	args := os.Args[1:]
 	stdin := parseStdin(args)
 
-	// result := InsertionSort(stdin[0])
-	binsumresult, err := BinarySum(stdin[0], stdin[1])
-	if err != nil {
-		panic(err)
-	}
+	result := SelectionSort(stdin[0], true)
+	// result = InsertionSort(MakeRandIntArray(20, 300), true)
+	// binsumresult, err := BinarySum(stdin[0], stdin[1])
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	// fmt.Println(result)
-	fmt.Println(binsumresult)
+	fmt.Println(result)
+	// fmt.Println(binsumresult)
 }
