@@ -38,7 +38,7 @@ func TestInsertionSortDesc(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			got := InsertionSortDesc(c.in)
+			got := InsertionSortDesc(c.in, false)
 			AssertIntArraysEqual(t, got, c.want)
 		})
 	}
